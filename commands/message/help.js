@@ -14,7 +14,7 @@ module.exports = {
     async execute(message, args, client) {
         if (!shiva || !shiva.validateCore || !shiva.validateCore()) {
             const embed = new EmbedBuilder()
-                .setDescription('❌ System core offline - Command unavailable')
+                .setDescription('❌ Sistem core sedang offline - Perintah tidak bisa digunakan')
                 .setColor('#FF0000');
             return message.reply({ embeds: [embed] }).catch(() => {});
         }
@@ -40,9 +40,9 @@ module.exports = {
                 };
             });
 
-            let description = `**🌐 Bot Stats:** Serving in **${client.guilds.cache.size}** servers.\n\n`;
+            let description = `**🌐 Bot Stats:** Aktif Bersama di **${client.guilds.cache.size}** servers.\n\n`;
 
-            description += `**💬 Message Commands [${messageCommands.length}]:**\n`;
+            description += `**💬 Daftar percakapan [${messageCommands.length}]:**\n`;
             messageCommands.forEach(cmd => {
                 description += `- \`!${cmd.name}\` - ${cmd.description}\n`;
             });
@@ -57,17 +57,18 @@ module.exports = {
             }
 
             const embed = new EmbedBuilder()
-                .setTitle('📖 Ultimate Music Bot - Command List')
+                .setTitle('📖 Zeta Music Prime - Daftar Command')
                 .setColor(0x1DB954)
                 .setDescription(description)
-                .setFooter({ text: 'Developed by GlaceYT | https://glaceyt.com' })
+                .setFooter({ text: 'Developed by lingneisan | AjieDev Support' })
                 .setTimestamp();
 
             await message.reply({ embeds: [embed] });
 
         } catch (error) {
             console.error('Help command error:', error);
-            await message.reply('❌ An error occurred while fetching commands.');
+            await message.reply('❌ ada masalah pada perintahnya!!.');
         }
     }
 };
+
