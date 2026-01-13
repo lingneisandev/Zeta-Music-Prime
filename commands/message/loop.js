@@ -12,7 +12,7 @@ module.exports = {
     async execute(message, args, client) {
         if (!shiva || !shiva.validateCore || !shiva.validateCore()) {
             const embed = new EmbedBuilder()
-                .setDescription('❌ System core offline - Command unavailable')
+                .setDescription('❌ System core sedang offline - perintah tidak berfungsi')
                 .setColor('#FF0000');
             return message.reply({ embeds: [embed] }).catch(() => {});
         }
@@ -28,7 +28,7 @@ module.exports = {
         const validModes = ['off', 'none', 'track', 'song', 'queue', 'all'];
         
         if (!mode || !validModes.includes(mode)) {
-            const embed = new EmbedBuilder().setDescription('❌ Please specify a valid loop mode!\n**Options:** `off`, `track`, `queue`\nExample: `!loop track`');
+            const embed = new EmbedBuilder().setDescription('❌ mohon untuk gunakakn perintah yang spesifik untuk menjalankan loop mode!\n**Options:** `off`, `track`, `queue`\nExample: `!loop track`');
             return message.reply({ embeds: [embed] })
                 .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
         }
@@ -44,13 +44,13 @@ module.exports = {
             );
 
             if (!conditions.hasActivePlayer) {
-                const embed = new EmbedBuilder().setDescription('❌ No music is currently playing!');
+                const embed = new EmbedBuilder().setDescription('❌ Tidak ada music yang diputar!');
                 return message.reply({ embeds: [embed] })
                     .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
             }
 
             if (!conditions.sameVoiceChannel) {
-                const embed = new EmbedBuilder().setDescription('❌ You need to be in the same voice channel as the bot!');
+                const embed = new EmbedBuilder().setDescription('❌ Anda perlu berada di saluran suara yang sama dengan bot!');
                 return message.reply({ embeds: [embed] })
                     .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
             }
@@ -72,9 +72,10 @@ module.exports = {
 
         } catch (error) {
             console.error('Loop command error:', error);
-            const embed = new EmbedBuilder().setDescription('❌ An error occurred while setting loop mode!');
+            const embed = new EmbedBuilder().setDescription('❌ Terjadi kesalahan saat mengatur mode `loop`!');
             return message.reply({ embeds: [embed] })
                 .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
         }
     }
 };
+
