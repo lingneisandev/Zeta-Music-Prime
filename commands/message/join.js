@@ -12,7 +12,7 @@ module.exports = {
     async execute(message, args, client) {
         if (!shiva || !shiva.validateCore || !shiva.validateCore()) {
             const embed = new EmbedBuilder()
-                .setDescription('❌ System core offline - Command unavailable')
+                .setDescription('❌ sistem core sedang offline - perintah tidak bisa digunakan')
                 .setColor('#FF0000');
             return message.reply({ embeds: [embed] }).catch(() => {});
         }
@@ -35,19 +35,19 @@ module.exports = {
             );
 
             if (!conditions.userInVoice) {
-                const embed = new EmbedBuilder().setDescription('❌ You need to be in a voice channel!');
+                const embed = new EmbedBuilder().setDescription('❌ Mohon untuk anda join voice terlebih dahulu!');
                 return message.reply({ embeds: [embed] })
                     .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
             }
 
             if (!conditions.canJoinVoice) {
-                const embed = new EmbedBuilder().setDescription('❌ I don\'t have permission to join your voice channel!');
+                const embed = new EmbedBuilder().setDescription('❌ saya tidak bisa masuk dikarenakan tidak ada izin untuk masuk ke dalam Voice!');
                 return message.reply({ embeds: [embed] })
                     .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
             }
 
             if (conditions.hasActivePlayer && conditions.sameVoiceChannel) {
-                const embed = new EmbedBuilder().setDescription('✅ I\'m already in your voice channel!');
+                const embed = new EmbedBuilder().setDescription('✅ Saya akan segera masuk ke voice anda!');
                 return message.reply({ embeds: [embed] })
                     .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
             }
@@ -61,7 +61,7 @@ module.exports = {
                 message.channel.id
             );
 
-            const embed = new EmbedBuilder().setDescription(`✅ Joined **${message.member.voice.channel.name}**!`);
+            const embed = new EmbedBuilder().setDescription(`✅ Memasuki Voice **${message.member.voice.channel.name}**!`);
             return message.reply({ embeds: [embed] })
                 .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
 
@@ -73,3 +73,4 @@ module.exports = {
         }
     }
 };
+
