@@ -6,13 +6,13 @@ const COMMAND_SECURITY_TOKEN = shiva.SECURITY_TOKEN;
 module.exports = {
     name: 'nowplaying',
     aliases: ['np', 'current', 'playing', 'now'],
-    description: 'Show current playing song',
+    description: 'Tampilkan lagu yang sedang diputar',
     securityToken: COMMAND_SECURITY_TOKEN,
     
     async execute(message, args, client) {
         if (!shiva || !shiva.validateCore || !shiva.validateCore()) {
             const embed = new EmbedBuilder()
-                .setDescription('❌ System core offline - Command unavailable')
+                .setDescription('❌ sistem core sedang offline - perintah tidak bisa digunakan')
                 .setColor('#FF0000');
             return message.reply({ embeds: [embed] }).catch(() => {});
         }
@@ -35,7 +35,7 @@ module.exports = {
             );
 
             if (!conditions.hasActivePlayer || !conditions.currentTrack) {
-                const embed = new EmbedBuilder().setDescription('❌ No music is currently playing!');
+                const embed = new EmbedBuilder().setDescription('❌ Saat ini tidak ada musik yang diputar!');
                 return message.reply({ embeds: [embed] })
                     .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
             }
@@ -63,7 +63,7 @@ module.exports = {
 
         } catch (error) {
             console.error('Now playing command error:', error);
-            const embed = new EmbedBuilder().setDescription('❌ An error occurred while fetching current song!');
+            const embed = new EmbedBuilder().setDescription('❌ Terjadi kesalahan saat mengambil lagu saat ini!');
             return message.reply({ embeds: [embed] })
                 .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
         }
@@ -84,3 +84,4 @@ function getLoopEmoji(loopMode) {
         default: return '➡️';
     }
 }
+
