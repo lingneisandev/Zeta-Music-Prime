@@ -67,10 +67,11 @@ module.exports = {
 
         } catch (error) {
             console.error('Join command error:', error);
-            const embed = new EmbedBuilder().setDescription('❌ An error occurred while joining voice channel!');
+            const embed = new EmbedBuilder().setDescription('❌ ada masalah pada memasuki voice!');
             return message.reply({ embeds: [embed] })
                 .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
         }
     }
 };
+
 
