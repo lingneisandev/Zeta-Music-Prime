@@ -5,13 +5,13 @@ const COMMAND_SECURITY_TOKEN = shiva.SECURITY_TOKEN;
 
 module.exports = {
     name: 'ping',
-    description: 'Check the bot\'s latency and uptime',
+    description: 'memeriksa terhadap latensi bot',
     securityToken: COMMAND_SECURITY_TOKEN,
     
     async execute(message, args, client) {
         if (!shiva || !shiva.validateCore || !shiva.validateCore()) {
             const embed = new EmbedBuilder()
-                .setDescription('❌ System core offline - Command unavailable')
+                .setDescription('❌ sistem core sedang offline - perintah tidak bisa digunakan')
                 .setColor('#FF0000');
             return message.reply({ embeds: [embed] }).catch(() => {});
         }
@@ -35,12 +35,13 @@ module.exports = {
                     `• **Uptime:** ${hours}h ${minutes}m ${seconds}s`
                 )
                 .setTimestamp()
-                .setFooter({ text: 'Ultimate Music Bot • Developed by GlaceYT' });
+                .setFooter({ text: 'Zeta Music Prime • Developed by Lingneisan' });
 
             await message.reply({ embeds: [embed] });
         } catch (error) {
             console.error('Ping command error:', error);
-            await message.reply('❌ An error occurred while checking ping.');
+            await message.reply('❌ Terjadi kesalahan saat memeriksa ping.');
         }
     }
 };
+
