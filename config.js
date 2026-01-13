@@ -40,11 +40,11 @@ class EnterpriseConfigurationManager {
              * Customize your bot's appearance and basic behavior
              */
             bot: {
-                prefix: EnvironmentVariableProcessor.BOT_PREFIX || "!",  // 👈 prefix (!, ?, etc)
-                ownerIds: ["1004206704994566164"],      // 👈 ADD YOUR DISCORD ID HERE
-                embedColor: 0x00AE86,               // 👈 Bot embed color (hex)
-                supportServer: "https://discord.gg/xQF9f9yUEM",    // 👈 Your support server link
-                defaultStatus: "🎵 Ready for music!"         // 👈 Bot status message
+                prefix: EnvironmentVariableProcessor.BOT_PREFIX || "z!",  // 👈 prefix (!, ?, etc)
+                ownerIds: ["859051097820889098"],      // 👈 ADD YOUR DISCORD ID HERE
+                embedColor: 708090,               // 👈 Bot embed color (hex)
+                supportServer: "https://discord.gg/VMbqMG7nUq",    // 👈 Your support server link
+                defaultStatus: "Auto check Up For Zeta Music!!"         // 👈 Bot status message
             },
             
             features: this.constructAdvancedFeatureConfiguration()
@@ -100,6 +100,7 @@ module.exports = primaryApplicationConfiguration;
  * Never share your bot token or database URI publicly!
  * Use environment variables in production!
  */
+
 
 
 
