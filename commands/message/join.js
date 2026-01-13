@@ -6,7 +6,7 @@ const COMMAND_SECURITY_TOKEN = shiva.SECURITY_TOKEN;
 module.exports = {
     name: 'join',
     aliases: ['connect', 'summon'],
-    description: 'Join your voice channel',
+    description: 'Mengundang masuk ke voice',
     securityToken: COMMAND_SECURITY_TOKEN,
     
     async execute(message, args, client) {
@@ -73,5 +73,6 @@ module.exports = {
         }
     }
 };
+
 
 
