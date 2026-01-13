@@ -6,13 +6,13 @@ const COMMAND_SECURITY_TOKEN = shiva.SECURITY_TOKEN;
 module.exports = {
     name: 'move',
     aliases: ['mv', 'movetrack'],
-    description: 'Move a song to different position in queue',
+    description: 'Pindahkan lagu ke posisi berbeda dalam antrean',
     securityToken: COMMAND_SECURITY_TOKEN,
     
     async execute(message, args, client) {
         if (!shiva || !shiva.validateCore || !shiva.validateCore()) {
             const embed = new EmbedBuilder()
-                .setDescription('❌ System core offline - Command unavailable')
+                .setDescription('❌ sistem core sedang offline - perintah tidak bisa digunakan')
                 .setColor('#FF0000');
             return message.reply({ embeds: [embed] }).catch(() => {});
         }
@@ -28,7 +28,7 @@ module.exports = {
         const to = parseInt(args[1]);
         
         if (!from || !to || from < 1 || to < 1) {
-            const embed = new EmbedBuilder().setDescription('❌ Please provide valid positions! Example: `!move 3 1` (move song 3 to position 1)');
+            const embed = new EmbedBuilder().setDescription('❌ Mohon berikan posisi yang valid! Contoh: `z!move 3 1` (pindahkan lagu 3 ke posisi 1)');
             return message.reply({ embeds: [embed] })
                 .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
         }
@@ -44,13 +44,13 @@ module.exports = {
             );
 
             if (!conditions.hasActivePlayer || conditions.queueLength === 0) {
-                const embed = new EmbedBuilder().setDescription('❌ Queue is empty!');
+                const embed = new EmbedBuilder().setDescription('❌ Antrian kosong!');
                 return message.reply({ embeds: [embed] })
                     .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
             }
 
             if (from > conditions.queueLength || to > conditions.queueLength) {
-                const embed = new EmbedBuilder().setDescription(`❌ Invalid positions! Queue has only ${conditions.queueLength} songs.`);
+                const embed = new EmbedBuilder().setDescription(`❌ Posisi tidak valid! Antrian hanya memiliki ${conditions.queueLength} lagu.`);
                 return message.reply({ embeds: [embed] })
                     .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
             }
@@ -64,15 +64,16 @@ module.exports = {
             player.queue.clear();
             queueArray.forEach(t => player.queue.add(t));
 
-            const embed = new EmbedBuilder().setDescription(`🔄 Moved **${track.info.title}** from position ${from} to ${to}!`);
+            const embed = new EmbedBuilder().setDescription(`🔄 Memindahkan **${track.info.title}** dari posisi ${from} Ke ${to}!`);
             return message.reply({ embeds: [embed] })
                 .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
 
         } catch (error) {
             console.error('Move command error:', error);
-            const embed = new EmbedBuilder().setDescription('❌ An error occurred while moving the song!');
+            const embed = new EmbedBuilder().setDescription('❌ Terjadi kesalahan saat memindahkan lagu!');
             return message.reply({ embeds: [embed] })
                 .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
         }
     }
 };
+
