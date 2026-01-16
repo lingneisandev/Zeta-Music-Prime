@@ -11,7 +11,7 @@
   </a>
 
   <a href="https://sociabuzz.com/lingneisan/donate">
-    <img src="https://img.shields.io/badge/Donate-PayPal-0079C1?style=flat-square&logo=paypal"
+    <img src="https://img.shields.io/badge/Donate-PayPal-0079C1?style=flat-square&logo=socialbuzz"
       alt="Donate" />
   </a>
 </p>
