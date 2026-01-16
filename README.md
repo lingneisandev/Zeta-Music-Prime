@@ -10,29 +10,29 @@
       alt="License: MIT" />
   </a>
 
-  <a href="https://www.paypal.me/@GlaceYT">
+  <a href="https://sociabuzz.com/lingneisan/donate">
     <img src="https://img.shields.io/badge/Donate-PayPal-0079C1?style=flat-square&logo=paypal"
       alt="Donate" />
   </a>
 </p>
 
 <p align="center">
-  <a href="https://www.youtube.com/channel/@GlaceYT">
+  <a href="https://www.youtube.com/@LingNeisan">
     <img src="https://img.shields.io/badge/YouTube-Subscribe-red?style=flat-square&logo=youtube"
       alt="YouTube" />
   </a>
 
-  <a href="https://discord.gg/xQF9f9yUEM">
+  <a href="https://discord.gg/VMbqMG7nUq">
     <img src="https://img.shields.io/badge/Discord-Join-blue?style=flat-square&logo=discord"
       alt="Join Discord" />
   </a>
 
-  <a href="https://www.instagram.com/glaceytt">
+  <a href="https://www.instagram.com/lingneisan">
     <img src="https://img.shields.io/badge/Instagram-Follow-E4405F?style=flat-square&logo=instagram"
       alt="Instagram" />
   </a>
 
-  <a href="https://www.facebook.com/youulewd/">
+  <a href="https://www.facebook.com/profile.php?id=100076910130978">
     <img src="https://img.shields.io/badge/Facebook-Follow-1877F2?style=flat-square&logo=facebook"
       alt="Facebook" />
   </a>
@@ -95,5 +95,5 @@ node index.js
 <p>🎉 Congratulations! Your bot is now up and running. 🥳</p>
 
 <h3>Additional Resources</h3>
-<p><strong>Video Tutorial:</strong> If you prefer a video guide, watch this YouTube tutorial [ Soon ].</p>
+<p><strong>Video Tutorial:</strong> If you prefer a video guide, watch this YouTube tutorial [ Tutorial all for yt GlanceYT ].</p>
 <p><strong>Common Errors:</strong> Consult the errors section for troubleshooting.</p>
