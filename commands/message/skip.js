@@ -52,10 +52,11 @@ module.exports = {
 
         } catch (error) {
             console.error('Skip command error:', error);
-            const embed = new EmbedBuilder().setDescription('❌ Terjadi kesalahan saat melewati lagu.!');
+            const embed = new EmbedBuilder().setDescription('❌ Terjadi kesalahan saat melewati lagu!');
             return message.reply({ embeds: [embed] })
                 .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
         }
     }
 };
+
 
