@@ -6,13 +6,13 @@ const COMMAND_SECURITY_TOKEN = shiva.SECURITY_TOKEN;
 module.exports = {
     name: 'resume',
     aliases: ['continue', 'unpause', 'start'],
-    description: 'Resume the paused music',
+    description: 'Lanjutkan musik yang dihentikan',
     securityToken: COMMAND_SECURITY_TOKEN,
     
     async execute(message, args, client) {
         if (!shiva || !shiva.validateCore || !shiva.validateCore()) {
             const embed = new EmbedBuilder()
-                .setDescription('❌ System core offline - Command unavailable')
+                .setDescription('❌ Sistem core sedang offline - perintah tidak bisa digunakan')
                 .setColor('#FF0000');
             return message.reply({ embeds: [embed] }).catch(() => {});
         }
@@ -35,13 +35,13 @@ module.exports = {
             );
 
             if (!conditions.hasActivePlayer) {
-                const embed = new EmbedBuilder().setDescription('❌ No music is currently playing!');
+                const embed = new EmbedBuilder().setDescription('❌ Saat ini tidak ada musik yang diputar.!');
                 return message.reply({ embeds: [embed] })
                     .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
             }
 
             if (!conditions.isPaused) {
-                const embed = new EmbedBuilder().setDescription('❌ Music is not paused!');
+                const embed = new EmbedBuilder().setDescription('❌ Musik tidak dijeda!');
                 return message.reply({ embeds: [embed] })
                     .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
             }
@@ -49,15 +49,16 @@ module.exports = {
             const player = conditions.player;
             player.pause(false);
 
-            const embed = new EmbedBuilder().setDescription('▶️ Music resumed!');
+            const embed = new EmbedBuilder().setDescription('▶️ Musik dilanjutkan!');
             return message.reply({ embeds: [embed] })
                 .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
 
         } catch (error) {
             console.error('Resume command error:', error);
-            const embed = new EmbedBuilder().setDescription('❌ An error occurred while resuming music!');
+            const embed = new EmbedBuilder().setDescription('❌ Terjadi kesalahan saat melanjutkan musik!');
             return message.reply({ embeds: [embed] })
                 .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
         }
     }
 };
+
