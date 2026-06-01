@@ -5,13 +5,13 @@ const COMMAND_SECURITY_TOKEN = shiva.SECURITY_TOKEN;
 
 module.exports = {
     name: 'support',
-    description: 'Get support server and contact information',
+    description: 'informasi lebih lanjut tentang kami',
     securityToken: COMMAND_SECURITY_TOKEN,
     
     async execute(message) {
         if (!shiva || !shiva.validateCore || !shiva.validateCore()) {
             const embed = new EmbedBuilder()
-                .setDescription('❌ System core offline - Command unavailable')
+                .setDescription('❌ sistem utama offline - perintah tidak bisa digunakan')
                 .setColor('#FF0000');
             return message.reply({ embeds: [embed] }).catch(() => {});
         }
@@ -21,16 +21,16 @@ module.exports = {
 
         try {
             const embed = new EmbedBuilder()
-                .setTitle('🛠️ Support & Contact')
+                .setTitle('🛠️ Hubungi kami')
                 .setColor(0x1DB954)
                 .setDescription(
-                    'Need help or have questions? Join our official support server:\n' +
+                    'apakah anda butuh bantuan tentang bot kami? Masuklah ke support server kami:\n' +
                     '[Support Server](https://discord.gg/xQF9f9yUEM)\n\n' +
-                    'For direct inquiries, contact: **GlaceYT**\n\n' +
+                    'For direct inquiries, contact: **lingneisan**\n\n' +
                     'Website: https://glaceyt.com'
                 )
                 .setTimestamp()
-                .setFooter({ text: 'Ultimate Music Bot • Developed by GlaceYT' });
+                .setFooter({ text: 'Zeta Music • Developed by lingneisan' });
             
             await message.reply({ embeds: [embed] });
         } catch (error) {
