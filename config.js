@@ -35,11 +35,16 @@ class EnterpriseConfigurationManager {
                 password: EnvironmentVariableProcessor.LAVALINK_PASSWORD || "glace", 
                 secure: EnvironmentVariableProcessor.LAVALINK_SECURE === 'true' || false
             },           
-
             lavalink: {
                 host: EnvironmentVariableProcessor.LAVALINK_HOST || "lavalinkv4.serenetia.com", 
                 port: EnvironmentVariableProcessor.LAVALINK_PORT || 443,       
                 password: EnvironmentVariableProcessor.LAVALINK_PASSWORD || "https://dsc.gg/ajidevserver", 
+                secure: EnvironmentVariableProcessor.LAVALINK_SECURE === 'true' || false
+            },       
+            lavalink: {
+                host: EnvironmentVariableProcessor.LAVALINK_HOST || "lava-v4.millohost.my.id", 
+                port: EnvironmentVariableProcessor.LAVALINK_PORT || 443,       
+                password: EnvironmentVariableProcessor.LAVALINK_PASSWORD || "https://discord.gg/mjS5J2K3ep", 
                 secure: EnvironmentVariableProcessor.LAVALINK_SECURE === 'true' || false
             },       
             /**
