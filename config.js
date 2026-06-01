@@ -56,7 +56,7 @@ class EnterpriseConfigurationManager {
                 ownerIds: ["859051097820889098"],      // 👈 ADD YOUR DISCORD ID HERE
                 embedColor: 708090,               // 👈 Bot embed color (hex)
                 supportServer: "https://discord.gg/VMbqMG7nUq",    // 👈 Your support server link
-                defaultStatus: "Auto check Up For Zeta Music!!"         // 👈 Bot status message
+                defaultStatus: "Help Full command z!help or /help (optimaze beta tester for Zata Music)!!"         // 👈 Bot status message
             },
             
             features: this.constructAdvancedFeatureConfiguration()
