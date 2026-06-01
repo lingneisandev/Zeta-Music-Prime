@@ -29,12 +29,19 @@ class EnterpriseConfigurationManager {
              * 🎵 LAVALINK AUDIO SERVER CONFIGURATION
              * Configure your Lavalink server for audio processing
              */
-            lavalink: {
+            lavalink gl: {
                 host: EnvironmentVariableProcessor.LAVALINK_HOST || "de-01.strixnodes.com", 
                 port: EnvironmentVariableProcessor.LAVALINK_PORT || 2010,       
                 password: EnvironmentVariableProcessor.LAVALINK_PASSWORD || "glace", 
                 secure: EnvironmentVariableProcessor.LAVALINK_SECURE === 'true' || false
             },           
+
+            lavalink seren: {
+                host: EnvironmentVariableProcessor.LAVALINK_HOST || "lavalinkv4.serenetia.com", 
+                port: EnvironmentVariableProcessor.LAVALINK_PORT || 443,       
+                password: EnvironmentVariableProcessor.LAVALINK_PASSWORD || "https://dsc.gg/ajidevserver", 
+                secure: EnvironmentVariableProcessor.LAVALINK_SECURE === 'true' || false
+            },       
             /**
              * 🤖 BOT BEHAVIOR CONFIGURATION
              * Customize your bot's appearance and basic behavior
