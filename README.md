@@ -1,7 +1,7 @@
 ![Animated Background](https://i.imgur.com/rBHrOtC.png)
 
 <h1 align="center" style="font-family: Arial, sans-serif; color: #FF6F61; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
-  Zeta Music Prime 1.0.0
+  Zeta Music Prime 1.0.0 ID Version
 </h1>
 
 <p align="center">
