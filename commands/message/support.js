@@ -25,9 +25,9 @@ module.exports = {
                 .setColor(0x1DB954)
                 .setDescription(
                     'apakah anda butuh bantuan tentang bot kami? Masuklah ke support server kami:\n' +
-                    '[Support Server](https://discord.gg/xQF9f9yUEM)\n\n' +
+                    '[Support Server](https://discord.gg/VMbqMG7nUq)\n\n' +
                     'For direct inquiries, contact: **lingneisan**\n\n' +
-                    'Website: https://glaceyt.com'
+                    'Website: https://s.id/Dashboard_linggroupentertaiment'
                 )
                 .setTimestamp()
                 .setFooter({ text: 'Zeta Music • Developed by lingneisan' });
@@ -35,7 +35,7 @@ module.exports = {
             await message.reply({ embeds: [embed] });
         } catch (error) {
             console.error('Support command error:', error);
-            await message.reply('❌ An error occurred while fetching support information.');
+            await message.reply('❌ Ada masalah pada system.');
         }
     }
 };
