@@ -6,13 +6,13 @@ const COMMAND_SECURITY_TOKEN = shiva.SECURITY_TOKEN;
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('clear')
-        .setDescription('Clear all songs from queue'),
+        .setDescription('Menghapus antrian lagu'),
     securityToken: COMMAND_SECURITY_TOKEN,
 
     async execute(interaction, client) {
         if (!shiva || !shiva.validateCore || !shiva.validateCore()) {
             const embed = new EmbedBuilder()
-                .setDescription('❌ System core offline - Command unavailable')
+                .setDescription('❌ sistem sedang bermasalah atau offline')
                 .setColor('#FF0000');
             return interaction.reply({ embeds: [embed], ephemeral: true }).catch(() => {});
         }
@@ -33,7 +33,7 @@ module.exports = {
             );
 
             if (!conditions.hasActivePlayer || conditions.queueLength === 0) {
-                const embed = new EmbedBuilder().setDescription('❌ Queue is empty!');
+                const embed = new EmbedBuilder().setDescription('❌ Tidak ada lagu yang dipilih.');
                 return interaction.editReply({ embeds: [embed] })
                     .then(() => setTimeout(() => interaction.deleteReply().catch(() => {}), 3000));
             }
@@ -42,13 +42,13 @@ module.exports = {
             const clearedCount = player.queue.size;
             player.queue.clear();
 
-            const embed = new EmbedBuilder().setDescription(`🗑️ Cleared **${clearedCount}** songs from queue!`);
+            const embed = new EmbedBuilder().setDescription(`🗑️ Menghapus **${clearedCount}** lagu dari antrian!`);
             return interaction.editReply({ embeds: [embed] })
                 .then(() => setTimeout(() => interaction.deleteReply().catch(() => {}), 3000));
 
         } catch (error) {
             console.error('Slash Clear command error:', error);
-            const embed = new EmbedBuilder().setDescription('❌ An error occurred while clearing the queue!');
+            const embed = new EmbedBuilder().setDescription('❌ System bermasalah,mohon untuk mencoba lagi!');
             return interaction.editReply({ embeds: [embed] })
                 .then(() => setTimeout(() => interaction.deleteReply().catch(() => {}), 3000));
         }
