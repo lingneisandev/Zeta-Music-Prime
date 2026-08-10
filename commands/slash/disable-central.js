@@ -7,14 +7,14 @@ const COMMAND_SECURITY_TOKEN = shiva.SECURITY_TOKEN;
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('disable-central')
-        .setDescription('Disable the central music system')
+        .setDescription('Mematikan musik utama')
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageChannels),
     securityToken: COMMAND_SECURITY_TOKEN,
 
     async execute(interaction, client) {
         if (!shiva || !shiva.validateCore || !shiva.validateCore()) {
             const embed = new EmbedBuilder()
-                .setDescription('❌ System core offline - Command unavailable')
+                .setDescription('❌ Sytem utama sedang bermasalah atau offline')
                 .setColor('#FF0000');
             return interaction.reply({ embeds: [embed], ephemeral: true }).catch(() => {});
         }
@@ -31,7 +31,7 @@ module.exports = {
             
             if (!serverConfig?.centralSetup?.enabled) {
                 return interaction.editReply({
-                    content: '❌ Central music system is not currently setup!',
+                    content: '❌ Central music system tidak di setting!',
                     ephemeral: true
                 });
             }
@@ -51,18 +51,18 @@ module.exports = {
             });
 
             const embed = new EmbedBuilder()
-                .setTitle('✅ Central Music System Disabled')
-                .setDescription('The central music system has been disabled and embed removed.')
+                .setTitle('✅ Central Music System Dimatikan')
+                .setDescription('Central Music Utama telah dimatikan dan menghapus panel.')
                 .setColor(0xFF6B6B)
-                .setFooter({ text: 'You can re-enable it anytime with /setup-central' });
+                .setFooter({ text: 'mohon anda untuk aktifkan kembali pada music central dengan command /setup-central' });
 
             await interaction.editReply({ embeds: [embed] });
 
         } catch (error) {
-            console.error('Error disabling central system:', error);
+            console.error('System tidak bisa dimatikan dan ada masalah:', error);
             
             await interaction.editReply({
-                content: '❌ An error occurred while disabling the central music system!',
+                content: '❌ sistem sedang mengalami kendala bermasalah,mohon coba lagi nanti.',
                 ephemeral: true
             });
         }
