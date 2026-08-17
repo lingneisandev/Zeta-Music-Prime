@@ -30,23 +30,12 @@ class EnterpriseConfigurationManager {
              * Configure your Lavalink server for audio processing
              */
             lavalink: {
-                host: EnvironmentVariableProcessor.LAVALINK_HOST || "de-01.strixnodes.com", 
-                port: EnvironmentVariableProcessor.LAVALINK_PORT || 2010,       
-                password: EnvironmentVariableProcessor.LAVALINK_PASSWORD || "glace", 
-                secure: EnvironmentVariableProcessor.LAVALINK_SECURE === 'true' || false
-            },           
-            lavalink: {
                 host: EnvironmentVariableProcessor.LAVALINK_HOST || "lavalinkv4.serenetia.com", 
                 port: EnvironmentVariableProcessor.LAVALINK_PORT || 443,       
-                password: EnvironmentVariableProcessor.LAVALINK_PASSWORD || "https://dsc.gg/ajidevserver", 
-                secure: EnvironmentVariableProcessor.LAVALINK_SECURE === 'true' || false
-            },       
-            lavalink: {
-                host: EnvironmentVariableProcessor.LAVALINK_HOST || "lava-v4.millohost.my.id", 
-                port: EnvironmentVariableProcessor.LAVALINK_PORT || 443,       
-                password: EnvironmentVariableProcessor.LAVALINK_PASSWORD || "https://discord.gg/mjS5J2K3ep", 
-                secure: EnvironmentVariableProcessor.LAVALINK_SECURE === 'true' || false
-            },       
+                password: EnvironmentVariableProcessor.LAVALINK_PASSWORD || "https://seretia.link/discord", 
+                secure: EnvironmentVariableProcessor.LAVALINK_SECURE === 'true' || true
+            },           
+                   
             /**
              * 🤖 BOT BEHAVIOR CONFIGURATION
              * Customize your bot's appearance and basic behavior
