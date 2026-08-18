@@ -6,7 +6,7 @@ const COMMAND_SECURITY_TOKEN = shiva.SECURITY_TOKEN;
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('loop')
-        .setDescription('Set loop mode')
+        .setDescription('Atur mode pengulangan')
         .addStringOption(option =>
             option.setName('mode')
                 .setDescription('Loop mode')
@@ -22,7 +22,7 @@ module.exports = {
     async execute(interaction, client) {
         if (!shiva || !shiva.validateCore || !shiva.validateCore()) {
             const embed = new EmbedBuilder()
-                .setDescription('❌ System core offline - Command unavailable')
+                .setDescription('❌ Inti sistem offline - Perintah tidak tersedia')
                 .setColor('#FF0000');
             return interaction.reply({ embeds: [embed], ephemeral: true }).catch(() => {});
         }
@@ -43,13 +43,13 @@ module.exports = {
             );
 
             if (!conditions.hasActivePlayer) {
-                const embed = new EmbedBuilder().setDescription('❌ No music is currently playing!');
+                const embed = new EmbedBuilder().setDescription('❌ Tidak ada musik yang sedang diputar!');
                 return interaction.editReply({ embeds: [embed] })
                     .then(() => setTimeout(() => interaction.deleteReply().catch(() => {}), 3000));
             }
 
             if (!conditions.sameVoiceChannel) {
-                const embed = new EmbedBuilder().setDescription('❌ You need to be in the same voice channel as the bot!');
+                const embed = new EmbedBuilder().setDescription('❌ Anda harus berada di saluran suara yang sama dengan bot!');
                 return interaction.editReply({ embeds: [embed] })
                     .then(() => setTimeout(() => interaction.deleteReply().catch(() => {}), 3000));
             }
@@ -68,7 +68,7 @@ module.exports = {
 
         } catch (error) {
             console.error('Loop command error:', error);
-            const embed = new EmbedBuilder().setDescription('❌ An error occurred while setting loop mode!');
+            const embed = new EmbedBuilder().setDescription('❌ Terjadi kesalahan saat mengatur mode pengulangan!');
             return interaction.editReply({ embeds: [embed] })
                 .then(() => setTimeout(() => interaction.deleteReply().catch(() => {}), 3000));
         }
