@@ -6,7 +6,7 @@ const COMMAND_SECURITY_TOKEN = shiva.SECURITY_TOKEN;
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('queue')
-        .setDescription('Show the music queue')
+        .setDescription('Tampilkan antrean musik')
         .addIntegerOption(option =>
             option.setName('page')
                 .setDescription('Queue page number')
@@ -18,7 +18,7 @@ module.exports = {
     async execute(interaction, client) {
         if (!shiva || !shiva.validateCore || !shiva.validateCore()) {
             const embed = new EmbedBuilder()
-                .setDescription('❌ System core offline - Command unavailable')
+                .setDescription('❌ Inti sistem offline - Perintah tidak tersedia')
                 .setColor('#FF0000');
             return interaction.reply({ embeds: [embed], ephemeral: true }).catch(() => {});
         }
@@ -39,7 +39,7 @@ module.exports = {
             );
 
             if (!conditions.hasActivePlayer) {
-                const embed = new EmbedBuilder().setDescription('❌ No music is currently playing!');
+                const embed = new EmbedBuilder().setDescription('❌ Tidak ada musik yang sedang diputar!');
                 return interaction.editReply({ embeds: [embed] })
                     .then(() => setTimeout(() => interaction.deleteReply().catch(() => {}), 3000));
             }
@@ -49,7 +49,7 @@ module.exports = {
             const currentTrack = player.current;
 
             if (!currentTrack && queue.size === 0) {
-                const embed = new EmbedBuilder().setDescription('📜 Queue is empty!');
+                const embed = new EmbedBuilder().setDescription('📜 Antrean kosong!');
                 return interaction.editReply({ embeds: [embed] })
                     .then(() => setTimeout(() => interaction.deleteReply().catch(() => {}), 3000));
             }
@@ -70,7 +70,7 @@ module.exports = {
             if (queue.size > 0) {
                 const queueTracks = Array.from(queue).slice(startIndex, endIndex);
                 if (queueTracks.length > 0) {
-                    description += `📋 **Up Next (${queue.size} songs)**\n`;
+                    description += `📋 **Berikutnya (${queue.size} songs)**\n`;
                     description += queueTracks.map((track, index) => {
                         const position = startIndex + index + 1;
                         const duration = formatDuration(track.info.length);
@@ -91,7 +91,7 @@ module.exports = {
 
         } catch (error) {
             console.error('Queue command error:', error);
-            const embed = new EmbedBuilder().setDescription('❌ An error occurred while fetching the queue!');
+            const embed = new EmbedBuilder().setDescription('❌ Terjadi kesalahan saat mengambil antrean!');
             return interaction.editReply({ embeds: [embed] })
                 .then(() => setTimeout(() => interaction.deleteReply().catch(() => {}), 3000));
         }
