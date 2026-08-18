@@ -6,13 +6,13 @@ const COMMAND_SECURITY_TOKEN = shiva.SECURITY_TOKEN;
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('pause')
-        .setDescription('Pause the current song'),
+        .setDescription('Jeda lagu yang sedang diputar'),
     securityToken: COMMAND_SECURITY_TOKEN,
 
     async execute(interaction, client) {
         if (!shiva || !shiva.validateCore || !shiva.validateCore()) {
             const embed = new EmbedBuilder()
-                .setDescription('❌ System core offline - Command unavailable')
+                .setDescription('❌ Inti sistem offline - Perintah tidak tersedia')
                 .setColor('#FF0000');
             return interaction.reply({ embeds: [embed], ephemeral: true }).catch(() => {});
         }
@@ -42,20 +42,20 @@ module.exports = {
             const player = conditions.player;
 
             if (player.paused) {
-                const embed = new EmbedBuilder().setDescription('❌ Music is already paused!');
+                const embed = new EmbedBuilder().setDescription('❌ Musik sudah dijeda!');
                 return interaction.editReply({ embeds: [embed] })
                     .then(() => setTimeout(() => interaction.deleteReply().catch(() => {}), 3000));
             }
 
             player.pause(true);
 
-            const embed = new EmbedBuilder().setDescription('⏸️ Music paused!');
+            const embed = new EmbedBuilder().setDescription('⏸️ Musik dijeda!');
             return interaction.editReply({ embeds: [embed] })
                 .then(() => setTimeout(() => interaction.deleteReply().catch(() => {}), 3000));
 
         } catch (error) {
             console.error('Pause command error:', error);
-            const embed = new EmbedBuilder().setDescription('❌ An error occurred while pausing music!');
+            const embed = new EmbedBuilder().setDescription('❌ Terjadi kesalahan saat menjeda musik!');
             return interaction.editReply({ embeds: [embed] })
                 .then(() => setTimeout(() => interaction.deleteReply().catch(() => {}), 3000));
         }
