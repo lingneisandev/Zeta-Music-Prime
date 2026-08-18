@@ -6,7 +6,7 @@ const COMMAND_SECURITY_TOKEN = shiva.SECURITY_TOKEN;
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('play')
-        .setDescription('Play a song or add to queue')
+        .setDescription('Putar lagu atau tambahkan ke antrean')
         .addStringOption(option =>
             option.setName('query')
                 .setDescription('Song name, URL, or search query')
@@ -17,7 +17,7 @@ module.exports = {
     async execute(interaction, client) {
         if (!shiva || !shiva.validateCore || !shiva.validateCore()) {
             const embed = new EmbedBuilder()
-                .setDescription('❌ System core offline - Command unavailable')
+                .setDescription('❌ Inti sistem offline - Perintah tidak tersedia')
                 .setColor('#FF0000');
             return interaction.reply({ embeds: [embed], ephemeral: true }).catch(() => {});
         }
@@ -58,15 +58,15 @@ module.exports = {
             const result = await playerHandler.playSong(player, query, interaction.user);
 
             if (result.type === 'track') {
-                const embed = new EmbedBuilder().setDescription(`✅ Added to queue: **${result.track.info.title}**`);
+                const embed = new EmbedBuilder().setDescription(`✅ Ditambahkan ke antrean: **${result.track.info.title}**`);
                 return interaction.editReply({ embeds: [embed] })
                     .then(() => setTimeout(() => interaction.deleteReply().catch(() => {}), 3000));
             } else if (result.type === 'playlist') {
-                const embed = new EmbedBuilder().setDescription(`✅ Added **${result.tracks}** songs from playlist: **${result.name}**`);
+                const embed = new EmbedBuilder().setDescription(`✅ Ditambahkan **${result.tracks}** songs from playlist: **${result.name}**`);
                 return interaction.editReply({ embeds: [embed] })
                     .then(() => setTimeout(() => interaction.deleteReply().catch(() => {}), 3000));
             } else {
-                const embed = new EmbedBuilder().setDescription('❌ No results found for your query!');
+                const embed = new EmbedBuilder().setDescription('❌ Tidak ada hasil yang ditemukan untuk pencarian Anda!');
                 return interaction.editReply({ embeds: [embed] })
                     .then(() => setTimeout(() => interaction.deleteReply().catch(() => {}), 3000));
             }
@@ -74,7 +74,7 @@ module.exports = {
         } catch (error) {
             console.error('Play slash command error:', error);
             ErrorHandler.handle(error, 'play slash command');
-            const embed = new EmbedBuilder().setDescription('❌ An error occurred while trying to play music!');
+            const embed = new EmbedBuilder().setDescription('❌ Terjadi kesalahan saat mencoba memutar musik!');
             return interaction.editReply({ embeds: [embed] })
                 .then(() => setTimeout(() => interaction.deleteReply().catch(() => {}), 3000));
         }
