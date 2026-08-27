@@ -25,51 +25,51 @@ class CentralEmbedHandler {
             const channel = await this.client.channels.fetch(channelId);
             
             const embed = new EmbedBuilder()
-            .setAuthor({ name: 'Ultimate Music Control Center', iconURL: 'https://cdn.discordapp.com/emojis/896724352949706762.gif', url: 'https://discord.gg/xQF9f9yUEM' })
+            .setAuthor({ name: 'GM Music Pusat Kendali', iconURL: 'https://cdn.discordapp.com/emojis/896724352949706762.gif', url: 'https://discord.gg/pakgm' })
                 .setDescription([
                     '',
-                    '- Simply type a **song name** or **YouTube link** to start the party!',
-                    '- In free version I only support **YouTube** only.',
+                    '- Cukup ketik **nama lagu** atau **Tautan** untuk memulai pesta!',
+                    '- Semuanya Jenis Lagu Bisa Diputar.',
                     '',
-                    '✨ *Ready to fill this place with amazing music?*'
+                    '✨ *Siap mengisi tempat ini dengan musik yang luar biasa?*'
                 ].join('\n'))
                 .setColor(0x9966ff) 
                 .addFields(
                     {
-                        name: '🎯 Quick Examples',
+                        name: '🎯 Contoh Singkat',
                         value: [
-                            '• `shape of you`',
-                            '• `lofi hip hop beats`',
-                            '• `https://youtu.be/dQw4w9WgXcQ`',
-                            '• `imagine dragons believer`'
+                            '• `DJ Astaga Bercanda`',
+                            '• `DJ Viral`',
+                            '• `https://music.youtube.com/watch?v=VANls_LF2_0&si=nu1wUsb5ocFx6il1`',
+                            '• `Maman Fvndy RMX`'
                         ].join('\n'),
                         inline: true
                     },
                     {
-                        name: '🚀 Features',
+                        name: '🚀 Fitur',
                         value: [
-                            '• 🎵 High quality audio',
-                            '• 📜 Queue management', 
-                            '• 🔁 Loop & shuffle modes',
-                            '• 🎛️ Volume controls',
-                            '• ⚡ Lightning fast search'
+                            '• 🎵 Audio berkualitas tinggi',
+                            '• 📜 Manajemen antrean', 
+                            '• 🔁 Mode pengulangan & acak',
+                            '• 🎛️ Pengatur volume',
+                            '• ⚡ Pencarian secepat kilat'
                         ].join('\n'),
                         inline: true
                     },
                     {
-                        name: '💡 Pro Tips',
+                        name: '💡 Tips Ahli',
                         value: [
-                            '• Join voice channel first',
-                            '• Use specific song names',
-                            '• Try artist + song combo',
-                            '• Playlists are supported!'
+                            '• Masuk ke saluran suara terlebih dahulu',
+                            '• Gunakan judul lagu yang spesifik.',
+                            '• Coba kombinasi artis + lagu.',
+                            '• Daftar putar didukung!'
                         ].join('\n'),
                         inline: false
                     }
                 )
                 .setImage('https://i.ibb.co/DDSdKy31/ezgif-8aec7517f2146d.gif')
                 .setFooter({ 
-                    text: 'Ultimate Music Bot • Developed By GlaceYT!',
+                    text: 'GM Music Bot • Developer Oleh Ling Neisan!',
                     iconURL: this.client.user.displayAvatarURL()
                 })
                 .setTimestamp();
@@ -180,21 +180,21 @@ class CentralEmbedHandler {
                     .setAuthor({ 
                         name: `${trackInfo.title}`, 
                         iconURL: 'https://cdn.discordapp.com/emojis/896724352949706762.gif',
-                        url: 'https://discord.gg/xQF9f9yUEM' 
+                        url: 'https://discord.gg/pakgm' 
                     })
                     .setDescription([
                         `**🎤 Artist:** ${trackInfo.author}`,
-                        `**👤 Requested by:** <@${trackInfo.requester.id}>`,
+                        `**👤 Diminta oleh:** <@${trackInfo.requester.id}>`,
                         '',
-                        `⏰ **Duration:** \`${this.formatDuration(trackInfo.duration)}\``,
-                        `${loopEmoji} **Loop:** \`${trackInfo.loop || 'Off'}\``,
+                        `⏰ **Durasi:** \`${this.formatDuration(trackInfo.duration)}\``,
+                        `${loopEmoji} **Mengulang:** \`${trackInfo.loop || 'Off'}\``,
                         `🔊 **Volume:** \`${trackInfo.volume || 50}%\``,
                         '',
-                        '🎶 *Enjoying the vibes? Type more song names below to keep the party going!*'
+                        '🎶 *Menikmati suasananya? Tuliskan lebih banyak judul lagu di bawah ini agar pestanya terus berlanjut!*'
                     ].join('\n'))
                     .setColor(embedColor)
                     .setFooter({ 
-                        text: `Ultimate Music Bot • ${statusText} • Developed By GlaceYT`,
+                        text: `GM Music Bot • ${statusText} • Developer Oleh Ling Neisan`,
                         iconURL: this.client.user.displayAvatarURL()
                     })
                     .setTimestamp();
@@ -213,44 +213,44 @@ class CentralEmbedHandler {
             } else {
                
                 embed = new EmbedBuilder()
-                .setAuthor({ name: 'Ultimate Music Control Center', iconURL: 'https://cdn.discordapp.com/emojis/896724352949706762.gif', url: 'https://discord.gg/xQF9f9yUEM' })
+                .setAuthor({ name: 'GM Music Pusat Kendali', iconURL: 'https://cdn.discordapp.com/emojis/896724352949706762.gif', url: 'https://discord.gg/pakgm' })
                 .setDescription([
                     '',
-                    '- Simply type a **song name** or **YouTube link** to start the party!',
-                    '- In free version I only support **YouTube** only.',
+                    '- Cukup ketik **nama lagu** atau **Tautan** untuk memulai pesta!',
+                    '- Bisa Putar jenis lagu apapun.',
                     '',
-                    '✨ *Ready to fill this place with amazing music?*'
+                    '✨ *Siap mengisi tempat ini dengan musik yang luar biasa?*'
                 ].join('\n'))
                 .setColor(0x9966ff) 
                 .addFields(
                     {
-                        name: '🎯 Quick Examples',
+                        name: '🎯 Contoh Singkat',
                         value: [
-                            '• `shape of you`',
-                            '• `lofi hip hop beats`',
-                            '• `https://youtu.be/dQw4w9WgXcQ`',
-                            '• `imagine dragons believer`'
+                            '• `DJ Astaga Bercanda`',
+                            '• `DJ Viral`',
+                            '• `https://music.youtube.com/watch?v=VANls_LF2_0&si=nu1wUsb5ocFx6il1`',
+                            '• `Maman Fvndy RMX`'
                         ].join('\n'),
                         inline: true
                     },
                     {
-                        name: '🚀 Features',
+                        name: '🚀 Fitur',
                         value: [
-                            '• 🎵 High quality audio',
-                            '• 📜 Queue management', 
-                            '• 🔁 Loop & shuffle modes',
-                            '• 🎛️ Volume controls',
-                            '• ⚡ Lightning fast search'
+                            '• 🎵 Audio berkualitas tinggi',
+                            '• 📜 Manajemen antrean', 
+                            '• 🔁 Mode pengulangan & acak',
+                            '• 🎛️ Pengatur volume',
+                            '• ⚡ Pencarian secepat kilat'
                         ].join('\n'),
                         inline: true
                     },
                     {
-                        name: '💡 Pro Tips',
+                        name: '💡 Tips Ahli',
                         value: [
-                            '• Join voice channel first',
-                            '• Use specific song names',
-                            '• Try artist + song combo',
-                            '• Playlists are supported!'
+                            '• Masuk ke saluran suara terlebih dahulu',
+                            '• Gunakan judul lagu yang spesifik.',
+                            '• Coba kombinasi artis + lagu.',
+                            '• Daftar putar didukung!'
                         ].join('\n'),
                         inline: false
                     }
