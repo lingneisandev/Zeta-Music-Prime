@@ -6,13 +6,13 @@ const COMMAND_SECURITY_TOKEN = shiva.SECURITY_TOKEN;
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('skip')
-        .setDescription('Skip the current song'),
+        .setDescription('Lewati lagu saat ini'),
     securityToken: COMMAND_SECURITY_TOKEN,
 
     async execute(interaction, client) {
         if (!shiva || !shiva.validateCore || !shiva.validateCore()) {
             const embed = new EmbedBuilder()
-                .setDescription('❌ System core offline - Command unavailable')
+                .setDescription('❌ Inti sistem offline - Perintah tidak tersedia')
                 .setColor('#FF0000');
             return interaction.reply({ embeds: [embed], ephemeral: true }).catch(() => {});
         }
@@ -40,17 +40,17 @@ module.exports = {
             }
 
             const player = conditions.player;
-            const currentTrack = player.current?.info?.title || 'Unknown';
+            const currentTrack = player.current?.info?.title || 'Tidak dikenal';
 
             player.stop();
 
-            const embed = new EmbedBuilder().setDescription(`⏭️ Skipped: **${currentTrack}**`);
+            const embed = new EmbedBuilder().setDescription(`⏭️ Dilewati: **${currentTrack}**`);
             return interaction.editReply({ embeds: [embed] })
                 .then(() => setTimeout(() => interaction.deleteReply().catch(() => {}), 3000));
 
         } catch (error) {
             console.error('Skip command error:', error);
-            const embed = new EmbedBuilder().setDescription('❌ An error occurred while skipping the song!');
+            const embed = new EmbedBuilder().setDescription('❌ Terjadi kesalahan saat melewati lagu!');
             return interaction.editReply({ embeds: [embed] })
                 .then(() => setTimeout(() => interaction.deleteReply().catch(() => {}), 3000));
         }
