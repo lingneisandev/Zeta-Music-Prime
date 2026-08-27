@@ -8,15 +8,15 @@ const COMMAND_SECURITY_TOKEN = shiva.SECURITY_TOKEN;
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('setup-central')
-        .setDescription('Setup the central music system in current channel')
+        .setDescription('Siapkan sistem musik sentral pada saluran saat ini.')
         .addChannelOption(option =>
             option.setName('voice-channel')
-                .setDescription('Voice channel for music (optional)')
+                .setDescription('Saluran suara untuk musik (opsional)')
                 .addChannelTypes(ChannelType.GuildVoice)
                 .setRequired(false))
         .addRoleOption(option =>
             option.setName('allowed-role')
-                .setDescription('Role allowed to use central system (optional)')
+                .setDescription('Peran yang diizinkan menggunakan sistem pusat (opsional)')
                 .setRequired(false))
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageChannels),
     securityToken: COMMAND_SECURITY_TOKEN,
@@ -24,7 +24,7 @@ module.exports = {
     async execute(interaction, client) {
         if (!shiva || !shiva.validateCore || !shiva.validateCore()) {
             const embed = new EmbedBuilder()
-                .setDescription('❌ System core offline - Command unavailable')
+                .setDescription('❌ Inti sistem offline - Perintah tidak tersedia')
                 .setColor('#FF0000');
             return interaction.reply({ embeds: [embed], ephemeral: true }).catch(() => {});
         }
@@ -44,7 +44,7 @@ module.exports = {
             
             if (serverConfig?.centralSetup?.enabled) {
                 return interaction.editReply({
-                    content: '❌ Central music system is already setup! Use `/disable-central` first to reset.',
+                    content: '❌ Sistem musik sentral sudah terpasang! Gunakan `/disable-central` yang pertama mengatur ulang.',
                     ephemeral: true
                 });
             }
@@ -54,7 +54,7 @@ module.exports = {
             
             if (!channel.permissionsFor(botMember).has(['SendMessages', 'EmbedLinks', 'ManageMessages'])) {
                 return interaction.editReply({
-                    content: '❌ I need `Send Messages`, `Embed Links`, and `Manage Messages` permissions in this channel!',
+                    content: '❌ Saya butuh `Send Messages`, `Embed Links`, dan `Manage Messages` izin di saluran ini!',
                     ephemeral: true
                 });
             }
@@ -64,7 +64,7 @@ module.exports = {
             
             if (!embedMessage) {
                 return interaction.editReply({
-                    content: '❌ Failed to create central embed!',
+                    content: '❌ Gagal membuat embed pusat!',
                     ephemeral: true
                 });
             }
@@ -87,31 +87,31 @@ module.exports = {
             });
 
             const successEmbed = new EmbedBuilder()
-                .setTitle('✅ Central Music System Setup Complete!')
-                .setDescription(`Central music control has been setup in <#${channelId}>`)
+                .setTitle('✅ Pengaturan Sistem Musik Sentral Selesai!')
+                .setDescription(`Kontrol musik pusat telah diatur di <#${channelId}>`)
                 .addFields(
-                    { name: '📍 Channel', value: `<#${channelId}>`, inline: true },
-                    { name: '🔊 Voice Channel', value: voiceChannel ? `<#${voiceChannel.id}>` : 'Not set', inline: true },
-                    { name: '👥 Allowed Role', value: allowedRole ? `<@&${allowedRole.id}>` : 'Everyone', inline: true }
+                    { name: '📍 Saluran', value: `<#${channelId}>`, inline: true },
+                    { name: '🔊 Saluran Suara', value: voiceChannel ? `<#${voiceChannel.id}>` : 'Belum diatur', inline: true },
+                    { name: '👥 Peran yang Diizinkan', value: allowedRole ? `<@&${allowedRole.id}>` : 'Setiap orang', inline: true }
                 )
                 .setColor(0x00FF00)
-                .setFooter({ text: 'Users can now type song names in the channel to play music!' });
+                .setFooter({ text: 'Pengguna kini dapat mengetik nama lagu di saluran untuk memutar musik!' });
 
             await interaction.editReply({ embeds: [successEmbed] });
 
             setTimeout(async () => {
                 try {
                     const usageEmbed = new EmbedBuilder()
-                        .setTitle('🎵 Central Music System Active!')
+                        .setTitle('🎵 Sistem Musik Sentral Aktif!')
                         .setDescription(
-                            '• Type any **song name** to play music\n' +
-                            '• Links (YouTube, Spotify) are supported\n' +
-                            '• Other messages will be auto-deleted\n' +
-                            '• Use normal commands (`!play`, `/play`) in other channels\n\n' +
-                            '⚠️ This message will be automatically deleted in 10 seconds!'
+                            '• Ketik **nama lagu** apa saja untuk memutar musik.\n' +
+                            '• Tautan (YouTube, Spotify) didukung.\n' +
+                            '• Pesan lainnya akan dihapus secara otomatis\n' +
+                            '• Gunakan perintah standar (`gm!play`, `/play`) di saluran lain\n\n' +
+                            '⚠️ Pesan ini akan dihapus secara otomatis dalam 10 detik!'
                         )
                         .setColor(0x1DB954)
-                        .setFooter({ text: 'Enjoy your music!' });
+                        .setFooter({ text: 'Selamat menikmati musik Anda!' });
             
                     const msg = await channel.send({ embeds: [usageEmbed] });
             
@@ -121,16 +121,16 @@ module.exports = {
                     }, 10000);
             
                 } catch (error) {
-                    console.error('Error sending usage instructions:', error);
+                    console.error('Terjadi kesalahan saat mengirimkan petunjuk penggunaan:', error);
                 }
             }, 2000);
             
 
         } catch (error) {
-            console.error('Error setting up central system:', error);
+            console.error('Kesalahan saat menyiapkan sistem pusat:', error);
             
             await interaction.editReply({
-                content: '❌ An error occurred while setting up the central music system!',
+                content: '❌ Terjadi kesalahan saat menyiapkan sistem musik pusat!',
                 ephemeral: true
             });
         }
