@@ -24,7 +24,7 @@ class StatusManager {
                 await this.clearVoiceChannelStatus(guildId);
             }
         } catch (error) {
-            console.error('❌ Error updating status and voice channel:', error);
+            console.error('❌ Terjadi kesalahan saat memperbarui status dan saluran suara:', error);
         }
     }
 
@@ -53,11 +53,11 @@ class StatusManager {
                     }],
                     status: 'online'
                 });
-                console.log(`🔄 Status refreshed: ${activity}`);
+                console.log(`🔄 Status diperbarui: ${activity}`);
             }
         }, 30000);
         
-        console.log(`✅ Status locked to: ${activity}`);
+        console.log(`✅ Status dikunci ke: ${activity}`);
     }
 
 
@@ -85,7 +85,7 @@ class StatusManager {
             const permissions = voiceChannel.permissionsFor(botMember);
             
             if (!permissions?.has('ManageChannels')) {
-                console.warn(`⚠️ Bot lacks 'Manage Channels' permission in ${voiceChannel.name}`);
+                console.warn(`⚠️ Bot tidak memiliki izin 'Kelola Saluran' di ${voiceChannel.name}`);
                 return;
             }
 
@@ -101,7 +101,7 @@ class StatusManager {
             await this.createChannelName(voiceChannel, trackTitle);
 
         } catch (error) {
-            console.error(`❌ Voice channel status creation failed: ${error.message}`);
+            console.error(`❌ Pembuatan status saluran suara gagal: ${error.message}`);
         }
     }
 
@@ -141,7 +141,7 @@ class StatusManager {
     
             const permissions = voiceChannel.permissionsFor(botMember);
             if (!permissions?.has('ManageChannels')) {
-                console.warn(`⚠️ Bot lacks 'Manage Channels' permission in ${voiceChannel.name}`);
+                console.warn(`⚠️ Bot tidak memiliki izin 'Kelola Saluran' di ${voiceChannel.name}`);
                 return;
             }
 
@@ -155,7 +155,7 @@ class StatusManager {
             await this.deleteChannelName(voiceChannel);
 
         } catch (error) {
-            console.error(`❌ Voice channel status clearing failed: ${error.message}`);
+            console.error(`❌ Gagal menghapus status saluran suara: ${error.message}`);
         }
     }
 
@@ -165,10 +165,10 @@ class StatusManager {
             await this.client.rest.put(`/channels/${channelId}/voice-status`, {
                 body: { status: statusText }
             });
-            console.log(`✅ Voice status created: ${statusText}`);
+            console.log(`✅ Status suara dibuat: ${statusText}`);
             return true;
         } catch (error) {
-            console.log(`ℹ️ Voice status API not available for creation`);
+            console.log(`ℹ️ API status suara tidak tersedia untuk pembuatan`);
             return false;
         }
     }
@@ -180,16 +180,16 @@ class StatusManager {
             await this.client.rest.put(`/channels/${channelId}/voice-status`, {
                 body: { status: null }
             });
-            console.log(`✅ Voice status cleared`);
+            console.log(`✅ Status suara telah dihapus`);
             return true;
         } catch (error) {
             try {
              
                 await this.client.rest.delete(`/channels/${channelId}/voice-status`);
-                console.log(`✅ Voice status deleted`);
+                console.log(`✅ Status suara dihapus`);
                 return true;
             } catch (deleteError) {
-                console.log(`ℹ️ Voice status API not available for deletion`);
+                console.log(`ℹ️ API status suara tidak tersedia untuk penghapusan`);
                 return false;
             }
         }
@@ -198,12 +198,12 @@ class StatusManager {
 
     async createChannelTopic(voiceChannel, trackTitle) {
         try {
-            const topicText = `🎵 Now Playing: ${trackTitle}`;
+            const topicText = `🎵 Sedang Diputar: ${trackTitle}`;
             await voiceChannel.setTopic(topicText);
-            console.log(`✅ Voice channel topic created: ${topicText}`);
+            console.log(`✅ Topik saluran suara dibuat: ${topicText}`);
             return true;
         } catch (error) {
-            console.log(`ℹ️ Channel topic creation failed: ${error.message}`);
+            console.log(`ℹ️ Pembuatan topik saluran gagal: ${error.message}`);
             return false;
         }
     }
@@ -215,10 +215,10 @@ class StatusManager {
             const originalTopic = originalData?.originalTopic || null;
             
             await voiceChannel.setTopic(originalTopic);
-            console.log(`✅ Voice channel topic restored`);
+            console.log(`✅ Topik saluran suara dipulihkan`);
             return true;
         } catch (error) {
-            console.log(`ℹ️ Channel topic restoration failed: ${error.message}`);
+            console.log(`ℹ️ Pemulihan topik saluran gagal: ${error.message}`);
             return false;
         }
     }
@@ -236,11 +236,11 @@ class StatusManager {
 
             if (newName !== voiceChannel.name && newName.length <= 100) {
                 await voiceChannel.setName(newName);
-                console.log(`✅ Voice channel name created: ${newName}`);
+                console.log(`✅ Nama saluran suara dibuat: ${newName}`);
             }
             return true;
         } catch (error) {
-            console.warn(`⚠️ Channel name creation failed: ${error.message}`);
+            console.warn(`⚠️ Pembuatan nama saluran gagal: ${error.message}`);
             return false;
         }
     }
@@ -253,14 +253,14 @@ class StatusManager {
             
             if (originalName && originalName !== voiceChannel.name) {
                 await voiceChannel.setName(originalName);
-                console.log(`✅ Voice channel name restored: ${originalName}`);
+                console.log(`✅ Nama saluran suara dipulihkan: ${originalName}`);
                 
          
                 this.voiceChannelData.delete(voiceChannel.id);
             }
             return true;
         } catch (error) {
-            console.warn(`⚠️ Channel name restoration failed: ${error.message}`);
+            console.warn(`⚠️ Pemulihan nama saluran gagal: ${error.message}`);
             return false;
         }
     }
@@ -270,7 +270,7 @@ class StatusManager {
         this.stopCurrentStatus();
         this.isPlaying = false;
         
-        const defaultActivity = `🎵 Ready for music!`;
+        const defaultActivity = `🎵 Siap untuk musik!`;
         
         await this.client.user.setPresence({
             activities: [{
@@ -280,7 +280,7 @@ class StatusManager {
             status: 'online'
         });
         
-        console.log(`✅ Status reset to: ${defaultActivity}`);
+        console.log(`✅ Status diatur ulang menjadi: ${defaultActivity}`);
     }
 
   
@@ -334,13 +334,13 @@ class StatusManager {
 
 
     async testVoiceChannelCRUD(guildId, testText = 'Test Song') {
-        console.log(`🧪 Testing Voice Channel CRUD for guild ${guildId}`);
+        console.log(`🧪 Menguji CRUD Saluran Suara untuk guild ${guildId}`);
         
         const results = [];
         
    
         await this.setVoiceChannelStatus(guildId, testText);
-        results.push('✅ CREATE: Status set');
+        results.push('✅ BUAT: Set status');
         
         await new Promise(resolve => setTimeout(resolve, 3000)); 
         
@@ -350,8 +350,8 @@ class StatusManager {
             const guild = this.client.guilds.cache.get(guildId);
             const voiceChannel = guild?.channels.cache.get(player.voiceChannel);
             if (voiceChannel) {
-                results.push(`📖 READ: Channel name: ${voiceChannel.name}`);
-                results.push(`📖 READ: Channel topic: ${voiceChannel.topic || 'None'}`);
+                results.push(`📖 BACA: Nama saluran: ${voiceChannel.name}`);
+                results.push(`📖 BACA: Topik saluran: ${voiceChannel.topic || 'None'}`);
             }
         }
         
@@ -359,7 +359,7 @@ class StatusManager {
         
   
         await this.clearVoiceChannelStatus(guildId);
-        results.push('🗑️ DELETE: Status cleared');
+        results.push('🗑️ HAPUS: Status dibersihkan');
         
         return results.join('\n');
     }
