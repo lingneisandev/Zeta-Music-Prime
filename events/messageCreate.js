@@ -127,9 +127,9 @@ module.exports = {
         try {
            
             if (!shiva || !shiva.validateCore || !shiva.validateCore()) {
-                console.error('💀 CRITICAL: Shiva core validation failed in messageCreate');
+                console.error('💀 KRITIS: Validasi inti Shiva gagal dalam messageCreate');
                 const embed = new EmbedBuilder()
-                    .setDescription('❌ System core offline - Bot unavailable')
+                    .setDescription('❌ Inti sistem offline - Bot tidak tersedia')
                     .setColor('#FF0000');
                 await message.reply({ embeds: [embed] }).catch(() => {});
                 return;
@@ -173,7 +173,7 @@ module.exports = {
 
                 
                 const securityEmbed = new EmbedBuilder()
-                    .setDescription('❌ Command blocked - Security validation required')
+                    .setDescription('❌ Perintah diblokir - Validasi keamanan diperlukan')
                     .setColor('#FF6600');
                 
                 await message.reply({ embeds: [securityEmbed] })
@@ -189,7 +189,7 @@ module.exports = {
 
                 
                 const warningEmbed = new EmbedBuilder()
-                    .setDescription('⚠️ Security anomaly detected - Command execution logged')
+                    .setDescription('⚠️ Anomali keamanan terdeteksi - Eksekusi perintah dicatat')
                     .setColor('#FF6600');
                 
                 await message.channel.send({ embeds: [warningEmbed] })
@@ -200,18 +200,18 @@ module.exports = {
            
 
         } catch (error) {
-            console.error('Error in messageCreate:', error);
+            console.error('Kesalahan pada messageCreate:', error);
             
             if (error.message.includes('shiva') || error.message.includes('validateCore')) {
                 const securityEmbed = new EmbedBuilder()
-                    .setDescription('❌ System security modules offline - Commands unavailable')
+                    .setDescription('❌ SModul keamanan sistem offline - Perintah tidak tersedia')
                     .setColor('#FF0000');
                     
                 await message.reply({ embeds: [securityEmbed] }).catch(() => {});
                 return;
             }
             
-            message.reply('There was an error executing that command!').catch(() => {});
+            message.reply('Terjadi kesalahan saat menjalankan perintah tersebut!').catch(() => {});
         }
     }
 };
@@ -809,13 +809,13 @@ async function validateCentralVoiceAccess(message, client, serverConfig) {
     const userVoiceChannelId = member.voice?.channelId;
 
     if (!userVoiceChannelId) {
-        return { valid: false, reason: '❌ You must be in a voice channel to request songs!' };
+        return { valid: false, reason: '❌ Anda harus berada di saluran suara untuk meminta lagu!' };
     }
 
     if (configuredVoiceChannelId && userVoiceChannelId !== configuredVoiceChannelId) {
         const configuredChannel = guild.channels.cache.get(configuredVoiceChannelId);
-        const channelName = configuredChannel?.name || 'configured voice channel';
-        return { valid: false, reason: `❌ You must be in **${channelName}** voice channel to use central music system!` };
+        const channelName = configuredChannel?.name || 'saluran suara yang dikonfigurasi';
+        return { valid: false, reason: `❌ Anda harus ikut serta **${channelName}** Saluran suara untuk menggunakan sistem musik terpusat!` };
     }
 
     const botMember = guild.members.me;
@@ -826,9 +826,9 @@ async function validateCentralVoiceAccess(message, client, serverConfig) {
         const userVoiceChannel = guild.channels.cache.get(userVoiceChannelId);
 
         if (configuredVoiceChannelId && userVoiceChannelId === configuredVoiceChannelId) {
-            console.log(`🎵 Central system takeover: Bot moving from ${botVoiceChannel?.name} to ${userVoiceChannel?.name}`);
+            console.log(`🎵 Pengambilalihan sistem pusat: Bot berpindah dari ${botVoiceChannel?.name} Ke ${userVoiceChannel?.name}`);
         } else {
-            return { valid: false, reason: `❌ Bot is already playing in **${botVoiceChannel?.name}**! Join that channel or wait for music to end.` };
+            return { valid: false, reason: `❌ Bot sudah bermain di **${botVoiceChannel?.name}**! Bergabunglah dengan saluran tersebut atau tunggu musiknya selesai.` };
         }
     }
 
@@ -1237,7 +1237,7 @@ async function handleCentralSongRequest(message, client, serverConfig, validated
                 const currentChannel = client.channels.cache.get(currentPlayer.textChannel);
                 // if (currentChannel) {
                 //     currentChannel.send({
-                //         embeds: [new EmbedBuilder().setDescription('🎵 **Central Music System activated!** Music control moved to central channel.')]
+                //         embeds: [new EmbedBuilder().setDescription('🎵 **Sistem Musik Pusat diaktifkan!** Kendali musik dialihkan ke saluran pusat.')]
                 //     }).then(msg => {
                 //         setTimeout(() => msg.delete().catch(() => {}), 5000);
                 //     }).catch(() => {});
@@ -1252,7 +1252,7 @@ async function handleCentralSongRequest(message, client, serverConfig, validated
         const player = await playerHandler.createPlayer(message.guild.id, voiceChannelId, message.channel.id);
         const result = await playerHandler.playSong(player, message.content.trim(), message.author);
     } catch (error) {
-        console.error('Error in central song request:', error);
+        console.error('Kesalahan pada permintaan lagu pusat:', error);
         message.react('❌').catch(() => { });
     }
 }
