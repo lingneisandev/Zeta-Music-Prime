@@ -29,14 +29,14 @@ class PlayerHandler {
 
             return player;
         } catch (error) {
-            console.error('Player creation error:', error.message);
+            console.error('Kesalahan pembuatan pemain:', error.message);
             return null;
         }
     }
 
     async playSong(player, query, requester) {
         try {
-            if (!player) return { type: 'error', message: 'Player not available' };
+            if (!player) return { type: 'error', message: 'Pemutar tidak tersedia' };
 
             const resolve = await this.client.riffy.resolve({ 
                 query: query, 
@@ -60,13 +60,13 @@ class PlayerHandler {
                 return {
                     type: 'playlist',
                     tracks: tracks.length,
-                    name: playlistInfo?.name || 'Unknown Playlist'
+                    name: playlistInfo?.name || 'Daftar Putar Tidak Dikenal'
                 };
 
             } else if (loadType === 'search' || loadType === 'track') {
                 const track = tracks[0];
                 if (!track || !track.info) {
-                    return { type: 'error', message: 'No results found' };
+                    return { type: 'error', message: 'Tidak ada hasil yang ditemukan' };
                 }
 
                 track.info.requester = requester;
@@ -82,12 +82,12 @@ class PlayerHandler {
                 };
 
             } else {
-                return { type: 'error', message: 'No results found' };
+                return { type: 'error', message: 'Tidak ada hasil yang ditemukan' };
             }
 
         } catch (error) {
-            console.error('Play song error:', error.message);
-            return { type: 'error', message: 'Failed to play song' };
+            console.error('Kesalahan saat memutar lagu:', error.message);
+            return { type: 'error', message: 'Gagal memutar lagu' };
         }
     }
 
@@ -135,8 +135,8 @@ class PlayerHandler {
             const thumbnail = await this.getThumbnailSafely(player.current);
 
             return {
-                title: player.current.info.title || 'Unknown Title',
-                author: player.current.info.author || 'Unknown Artist',
+                title: player.current.info.title || 'Judul Tidak Diketahui',
+                author: player.current.info.author || 'Artis Tidak Dikenal',
                 duration: player.current.info.length || 0,
                 thumbnail: thumbnail,
                 requester: player.current.info.requester || null,
@@ -156,8 +156,8 @@ class PlayerHandler {
     initializeEvents() {
         this.client.riffy.on('trackStart', async (player, track) => {
             try {
-                const trackTitle = track?.info?.title || 'Unknown Track';
-                console.log(`🎵 Started playing: ${trackTitle} in ${player.guildId}`);
+                const trackTitle = track?.info?.title || 'Lagu Tidak Dikenal';
+                console.log(`🎵 Mulai bermain: ${trackTitle} in ${player.guildId}`);
                 
                 if (this.client.statusManager) {
                     await this.client.statusManager.onTrackStart(player.guildId);
@@ -167,8 +167,8 @@ class PlayerHandler {
                     const thumbnail = await this.getThumbnailSafely(track);
                     
                     await this.centralEmbed.updateCentralEmbed(player.guildId, {
-                        title: track.info.title || 'Unknown Title',
-                        author: track.info.author || 'Unknown Artist',
+                        title: track.info.title || 'Judul Tidak Diketahui',
+                        author: track.info.author || 'Artis Tidak Dikenal',
                         duration: track.info.length || 0,
                         thumbnail: thumbnail,
                         requester: track.info.requester || null,
@@ -179,14 +179,14 @@ class PlayerHandler {
                     });
                 }
             } catch (error) {
-                console.error('Track start error:', error.message);
+                console.error('Kesalahan awal trek:', error.message);
             }
         });
 
         this.client.riffy.on('trackEnd', async (player, track) => {
             try {
-                const trackTitle = track?.info?.title || 'Unknown Track';
-                console.log(`🎵 Finished playing: ${trackTitle} in ${player.guildId}`);
+                const trackTitle = track?.info?.title || 'Lagu Tidak Dikenal';
+                console.log(`🎵 Selesai bermain: ${trackTitle} in ${player.guildId}`);
                 
                 if (this.client.statusManager) {
                     await this.client.statusManager.onTrackEnd(player.guildId);
@@ -198,7 +198,7 @@ class PlayerHandler {
 
         this.client.riffy.on('queueEnd', async (player) => {
             try {
-                console.log(`🎵 Queue ended in ${player.guildId}`);
+                console.log(`🎵 Antrean berakhir dalam ${player.guildId}`);
         
                 await this.centralEmbed.updateCentralEmbed(player.guildId, null);
         
@@ -217,26 +217,26 @@ class PlayerHandler {
                     player.destroy();
                 }
             } catch (error) {
-                console.error('Queue end error:', error.message);
+                console.error('Kesalahan akhir antrean:', error.message);
                 try {
                     player.destroy();
                 } catch (destroyError) {
-                    console.error('Player destroy error:', destroyError.message);
+                    console.error('Kesalahan penghancuran pemain:', destroyError.message);
                 }
             }
         });
 
         this.client.riffy.on('playerCreate', async (player) => {
             try {
-                console.log(`🎵 Player created for guild ${player.guildId}`);
+                console.log(`🎵 Pemain yang dibuat untuk guild ${player.guildId}`);
             } catch (error) {
-                console.error('Player create error:', error.message);
+                console.error('Kesalahan pembuatan pemutar:', error.message);
             }
         });
 
         this.client.riffy.on('playerDisconnect', async (player) => {
             try {
-                console.log(`🎵 Player destroyed for guild ${player.guildId}`);
+                console.log(`🎵 Pemain dihancurkan demi guild ${player.guildId}`);
                 
                 if (this.client.statusManager) {
                     await this.client.statusManager.onPlayerDisconnect(player.guildId);
@@ -244,7 +244,7 @@ class PlayerHandler {
                 
                 await this.centralEmbed.updateCentralEmbed(player.guildId, null);
             } catch (error) {
-                console.error('Player disconnect error:', error.message);
+                console.error('Kesalahan pemutusan koneksi pemain:', error.message);
             }
         });
 
