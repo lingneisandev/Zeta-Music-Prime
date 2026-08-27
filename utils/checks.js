@@ -85,11 +85,11 @@ class ConditionChecker {
 
     getErrorMessage(conditions, action = 'play') {
         if (!conditions.userInVoice) {
-            return '❌ You need to be in a voice channel to use music commands!';
+            return '❌ Anda harus berada di saluran suara untuk menggunakan perintah musik!';
         }
 
         if (!conditions.canJoinVoice) {
-            return '❌ I don\'t have permission to join your voice channel!';
+            return '❌ Saya tidak\'Tidak memiliki izin untuk bergabung dengan saluran suara Anda!';
         }
 
 
@@ -97,7 +97,7 @@ class ConditionChecker {
 
             if (conditions.botInCentralVC && !conditions.fromCentral) {
                 if (conditions.centralEnabled && conditions.centralVC) {
-                    return `❌ I'm currently in the central music system! Join <#${conditions.centralVC}> or use the central channel to control music.`;
+                    return `❌ Saya sedang berada di sistem musik pusat! Ayo bergabung <#${conditions.centralVC}> atau gunakan saluran tengah untuk mengontrol musik.`;
                 }
             }
 
@@ -105,15 +105,15 @@ class ConditionChecker {
                 return null;
             }
 
-            return '❌ I\'m already playing music in a different voice channel!';
+            return '❌ SAYA\'Saya sudah memutar musik di saluran suara yang berbeda!';
         }
 
         if (action === 'skip' && !conditions.isPlaying) {
-            return '❌ Nothing is currently playing to skip!';
+            return '❌ Tidak ada yang sedang diputar untuk dilewati!';
         }
 
         if (action === 'pause' && !conditions.isPlaying) {
-            return '❌ Nothing is currently playing to pause!';
+            return '❌ Tidak ada yang sedang diputar untuk dijeda!';
         }
 
         return null;
