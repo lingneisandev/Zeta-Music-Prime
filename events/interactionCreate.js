@@ -9,14 +9,14 @@ module.exports = {
             
             if (!command) {
                 return interaction.reply({
-                    content: 'This command is not available!',
+                    content: 'Perintah ini tidak tersedia!',
                     ephemeral: true
                 });
             }
 
             if (!shiva || !shiva.validateCore || !shiva.validateCore()) {
                 const embed = new EmbedBuilder()
-                    .setDescription('❌ System core offline - Commands unavailable')
+                    .setDescription('❌ Inti sistem offline - Perintah tidak tersedia')
                     .setColor('#FF0000');
                 return interaction.reply({ embeds: [embed], ephemeral: true }).catch(() => {});
             }
@@ -24,7 +24,7 @@ module.exports = {
             if (!command.securityToken || command.securityToken !== shiva.SECURITY_TOKEN) {
                 
                 const securityEmbed = new EmbedBuilder()
-                    .setDescription('❌ Command blocked - Security validation required')
+                    .setDescription('❌ Perintah diblokir - Validasi keamanan diperlukan')
                     .setColor('#FF6600');
                 
                 return interaction.reply({ embeds: [securityEmbed], ephemeral: true }).catch(() => {});
@@ -36,7 +36,7 @@ module.exports = {
                 if (!interaction.shivaValidated || !interaction.securityToken || interaction.securityToken !== shiva.SECURITY_TOKEN) {
                   
                     const warningEmbed = new EmbedBuilder()
-                        .setDescription('⚠️ Security anomaly detected - Command execution logged')
+                        .setDescription('⚠️ Anomali keamanan terdeteksi - Eksekusi perintah dicatat')
                         .setColor('#FF6600');
                     
                     if (!interaction.replied && !interaction.deferred) {
