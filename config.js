@@ -41,7 +41,7 @@ class EnterpriseConfigurationManager {
              * Customize your bot's appearance and basic behavior
              */
             bot: {
-                prefix: EnvironmentVariableProcessor.BOT_PREFIX || "z!",  // 👈 prefix (!, ?, etc)
+                prefix: EnvironmentVariableProcessor.BOT_PREFIX || "gm!",  // 👈 prefix (!, ?, etc)
                 ownerIds: ["859051097820889098"],      // 👈 ADD YOUR DISCORD ID HERE
                 embedColor: 708090,               // 👈 Bot embed color (hex)
                 supportServer: "https://discord.gg/VMbqMG7nUq",    // 👈 Your support server link
