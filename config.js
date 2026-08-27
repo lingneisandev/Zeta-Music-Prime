@@ -95,7 +95,7 @@ module.exports = primaryApplicationConfiguration;
  * Instead of editing this file, you can use .env file:
  * TOKEN=your_bot_token_here
  * MONGODB_URI=your_mongodb_uri_here
- * BOT_PREFIX=z!
+ * BOT_PREFIX=gm!
  * 
  * ⚠️ SECURITY WARNING:
  * Never share your bot token or database URI publicly!
